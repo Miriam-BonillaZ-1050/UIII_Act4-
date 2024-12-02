@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Pago</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarPago/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_pago" name="num_id_pago" class="form-control" value="{{ mis_pagos.id_pago }}" readonly><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date_fecha_venta" name="date_fecha_venta" class="form-control" value="{{ mis_pagos.fecha_venta }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="txt_monto_total" name="txt_monto_total" class="form-control" value="{{ mis_pagos.monto_total }}" step="0.01" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_tipo_pago" name="txt_tipo_pago" class="form-control" value="{{ mis_pagos.tipo }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_descripcion_compra" name="txt_descripcion_compra" class="form-control" value="{{ mis_pagos.descripcion_compra }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_id_producto" name="txt_id_producto" class="form-control" value="{{ mis_pagos.id_producto }}" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Pago</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

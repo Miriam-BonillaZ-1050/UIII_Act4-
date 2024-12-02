@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h2>Registrar Pago</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="registrarPago/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="num_id_pago" name="num_id_pago" class="form-control" placeholder="Id de Pago" minlength="1" maxlength="8" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date_fecha_venta" name="date_fecha_venta" class="form-control" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="txt_monto_total" name="txt_monto_total" class="form-control" placeholder="Monto Total" step="0.01" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_tipo_pago" name="txt_tipo_pago" class="form-control" placeholder="Tipo de Pago" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_descripcion_compra" name="txt_descripcion_compra" class="form-control" placeholder="Descripción de Compra" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_id_producto" name="txt_id_producto" class="form-control" placeholder="Id del Producto" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Pago</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h2>Listado de Pagos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id de Pago</th>
+                <th scope="col">Fecha Venta</th>
+                <th scope="col">Monto Total</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Id Producto</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in mis_pagos %}
+            <tr>
+                <td>{{ p.id_pago }}</td>
+                <td>{{ p.fecha_venta }}</td>
+                <td>{{ p.monto_total }}</td>
+                <td>{{ p.tipo }}</td>
+                <td>{{ p.descripcion_compra }}</td>
+                <td>{{ p.id_producto }}</td>
+                <td><a href="seleccionarPago/{{ p.id_pago }}" class="btn btn-info">Editar</a></td>
+                <td><a href="borrarPago/{{ p.id_pago }}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

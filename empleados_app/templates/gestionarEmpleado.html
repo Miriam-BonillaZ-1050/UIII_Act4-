@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Empleado</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarEmpleado/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="num_id_empleado" name="num_id_empleado" class="form-control" placeholder="ID Empleado" minlength="1" maxlength="8" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_empleado" name="txt_nombre_empleado" class="form-control" placeholder="Nombre del Empleado" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidos_empleado" name="txt_apellidos_empleado" class="form-control" placeholder="Apellidos del Empleado" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono_empleado" name="txt_telefono_empleado" class="form-control" placeholder="Teléfono del Empleado" maxlength="20" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt_email_empleado" name="txt_email_empleado" class="form-control" placeholder="Email del Empleado" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_puesto_empleado" name="txt_puesto_empleado" class="form-control" placeholder="Puesto del Empleado" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_id_cliente" name="num_id_cliente" class="form-control" placeholder="ID de Cliente" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de Empleados</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID Empleado</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Cliente</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in misempleados %}
+                <tr>
+                    <td>{{ empleado.id_empleado }}</td>
+                    <td>{{ empleado.nombre_emp }}</td>
+                    <td>{{ empleado.apellidos_emp }}</td>
+                    <td>{{ empleado.telefono_emp }}</td>
+                    <td>{{ empleado.email_emp }}</td>
+                    <td>{{ empleado.puesto }}</td>
+                    <td>{{ empleado.id_cliente }}</td>
+                    <td>
+                        <a href="seleccionarEmpleado/{{ empleado.id_empleado }}" class="btn btn-info">Editar</a>
+                        <a href="borrarEmpleado/{{ empleado.id_empleado }}" class="btn btn-danger">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

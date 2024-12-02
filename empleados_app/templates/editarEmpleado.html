@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Empleado</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarEmpleado/" method="POST">{% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_empleado" name="num_id_empleado" class="form-control" value="{{ empleado.id_empleado }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_empleado" name="txt_nombre_empleado" class="form-control" value="{{ empleado.nombre_emp }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidos_empleado" name="txt_apellidos_empleado" class="form-control" value="{{ empleado.apellidos_emp }}" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono_empleado" name="txt_telefono_empleado" class="form-control" value="{{ empleado.telefono_emp }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt_email_empleado" name="txt_email_empleado" class="form-control" value="{{ empleado.email_emp }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_puesto_empleado" name="txt_puesto_empleado" class="form-control" value="{{ empleado.puesto }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_id_cliente" name="num_id_cliente" class="form-control" value="{{ empleado.id_cliente }}" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

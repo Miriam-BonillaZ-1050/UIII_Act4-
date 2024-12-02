@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--La fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--Columna izquierda-->
+        <h1>Registrar Cliente</h1>
+        <div class="card"> <!-- La tarjeta -->
+    <div class="card-body">
+        <form action="registrarCliente/" method="POST"> {% csrf_token %}
+        <div class="form-group">
+            <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" placeholder="Id Cliente" minlength="1" maxlenght="8" required><br>
+        </div>
+        <div class="form-group">
+            <input type="text" id="txt_nombre_cliente" name="txt_nombre_cliente" class="form-control" placeholder="Nombre del cliente" maxlenght="100" required><br>
+        </div>
+        <div class="form-group">
+            <input type="text" id="txt_apellidop_cliente" name="txt_apellidop_cliente" class="form-control" placeholder="Apellido paterno del cliente" maxlenght="100" required><br>
+        </div>
+        <div class="form-group">
+            <input type="text" id="txt_apellidom_cliente" name="txt_apellidom_cliente" class="form-control" placeholder="Apellido materno del cliente" maxlenght="100" required><br>
+        </div>
+        <div class="form-group">
+            <input type="date" id="date_fecha_cliente" name="date_fecha_cliente" class="form-control" placeholder="Fecha de nacimiento del cliente" required><br>
+        </div>
+        <div class="form-group">
+            <input type="text" id="txt_direccion_cliente" name="txt_direccion_cliente" class="form-control" placeholder="Direccion del cliente" maxlenght="100" required><br>
+        </div>
+        <div class="form-group">
+            <input type="text" id="txt_telefono_cliente" name="txt_telefono_cliente" class="form-control" placeholder="Telefono del cliente" maxlenght="10" required><br>
+        </div>
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+        </div>
+    </form>
+</div>
+</div>
+    </div><!--Columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--Columna derecha-->
+        <h1>Listado de clientes</h1>
+        <!--Tablas-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id del Cliente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido P</th>
+                <th scope="col">Apellido M</th>
+                <th scope="col">Fecha Nac</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
+                <th> Opciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in misclientes %}
+            <tr>
+                <td> {{m.id_cliente}}</td>
+                <td> {{m.nombre}}</td>
+                <td> {{m.apellido_p}}</td>
+                <td> {{m.apellido_m}}</td>
+                <td> {{m.fecha}}</td>
+                <td> {{m.direccion}}</td>
+                <td> {{m.telefono}}</td>
+                
+                <td> <a href="seleccionarCliente/{{m.id_cliente}}" class="btn btn-info"> Editar</a></td>
+                <td> <a href="borrarCliente/{{m.id_cliente}}" class="btn btn-danger"> Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--Tabla-->
+</div><!--Columna derecha-->
+    
+</div><!--La fila-->
+
+{% endblock %}

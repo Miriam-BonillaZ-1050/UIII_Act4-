@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Producto</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST">{% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_producto" name="num_id_producto" class="form-control" placeholder="Id Producto" value="{{ producto.id_producto }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_producto" name="txt_nombre_producto" class="form-control" value="{{ producto.nombre }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_descripcion_producto" name="txt_descripcion_producto" class="form-control" value="{{ producto.descripcion }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_stock_producto" name="num_stock_producto" class="form-control" value="{{ producto.stock }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="0.01" id="num_precio_producto" name="num_precio_producto" class="form-control" value="{{ producto.precio }}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_categoria_producto" name="txt_categoria_producto" class="form-control" value="{{ producto.categoria }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_id_sucursal" name="num_id_sucursal" class="form-control" value="{{ producto.id_sucursal }}" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

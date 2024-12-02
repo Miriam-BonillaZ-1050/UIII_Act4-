@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!-- Fila en editar -->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Cliente</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="/editarCliente/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_cliente" name="num_id_cliente" class="form-control" placeholder="Id Cliente" value="{{ misclientes.id_cliente }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_cliente" name="txt_nombre_cliente" class="form-control" value="{{misclientes.nombre}}" maxlenght="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidop_cliente" name="txt_apellidop_cliente" class="form-control" value="{{misclientes.apellido_p}}" maxlenght="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_apellidom_cliente" name="txt_apellidom_cliente" class="form-control" value="{{misclientes.apellido_m}}" maxlenght="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="date_fecha_cliente" name="date_fecha_cliente" class="form-control" value="{{misclientes.fecha}}" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_direccion_cliente" name="txt_direccion_cliente" class="form-control" value="{{misclientes.direccion}}" maxlenght="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono_cliente" name="txt_telefono_cliente" class="form-control" value="{{misclientes.telefono}}" maxlenght="10" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Aqui codigo tarjeta -->
+    </div>
+</div><!-- Fila en editar -->
+
+{% endblock %}
