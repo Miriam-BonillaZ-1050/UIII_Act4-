@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Sucursal</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarSucursal/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="num_id_sucursal" name="num_id_sucursal" class="form-control" placeholder="ID Sucursal" minlength="1" maxlength="8" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_sucursal" name="txt_nombre_sucursal" class="form-control" placeholder="Nombre de la Sucursal" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_direccion_sucursal" name="txt_direccion_sucursal" class="form-control" placeholder="Dirección de la Sucursal" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_ciudad_sucursal" name="txt_ciudad_sucursal" class="form-control" placeholder="Ciudad de la Sucursal" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono_sucursal" name="txt_telefono_sucursal" class="form-control" placeholder="Teléfono de la Sucursal" maxlength="20" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_id_proveedor" name="num_id_proveedor" class="form-control" placeholder="ID Proveedor" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Sucursal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de Sucursales</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID Sucursal</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Proveedor</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sucursal in missucursales %}
+                <tr>
+                    <td>{{ sucursal.id_sucursal }}</td>
+                    <td>{{ sucursal.nombre_suc }}</td>
+                    <td>{{ sucursal.direccion_suc }}</td>
+                    <td>{{ sucursal.ciudad }}</td>
+                    <td>{{ sucursal.telefono_suc }}</td>
+                    <td>{{ sucursal.id_proveedor }}</td>
+                    <td>
+                        <a href="seleccionarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-info">Editar</a>
+                        <a href="borrarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-danger">Borrar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

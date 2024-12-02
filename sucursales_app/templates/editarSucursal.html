@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Sucursal</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarSucursal/" method="POST">{% csrf_token %}
+                    <div class="form-group py-3">
+                        <input type="text" id="num_id_sucursal" name="num_id_sucursal" class="form-control" value="{{ sucursal.id_sucursal }}" readonly><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_nombre_sucursal" name="txt_nombre_sucursal" class="form-control" value="{{ sucursal.nombre_suc }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_direccion_sucursal" name="txt_direccion_sucursal" class="form-control" value="{{ sucursal.direccion_suc }}" maxlength="200" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_ciudad_sucursal" name="txt_ciudad_sucursal" class="form-control" value="{{ sucursal.ciudad }}" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txt_telefono_sucursal" name="txt_telefono_sucursal" class="form-control" value="{{ sucursal.telefono_suc }}" maxlength="20" required><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="num_id_proveedor" name="num_id_proveedor" class="form-control" value="{{ sucursal.id_proveedor }}" required><br>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
